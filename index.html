@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação Física Antropométrica</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <header>
+        <h1>Calculadora Antropométrica | Olá, Avaliador!</h1>
+    </header>
+
+    <main>
+        <form id="formulario-avaliacao">
+
+            <section class="dados-gerais">
+                <h2>1. Dados Gerais e Protocolo</h2>
+                
+                <div class="input-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="idade">Idade (anos):</label>
+                    <input type="number" id="idade" min="1" required>
+                </div>
+                
+                <div class="input-group">
+                    <label>Sexo:</label>
+                    <label><input type="radio" name="sexo" value="masculino" required> Masculino</label>
+                    <label><input type="radio" name="sexo" value="feminino"> Feminino</label>
+                </div>
+
+                <div class="input-group">
+                    <label for="protocolo">Selecione o Protocolo de Dobras Cutâneas:</label>
+                    <select id="protocolo" onchange="controlarInputsDobras()" required>
+                        <option value="">-- Escolha um Protocolo --</option>
+                        <option value="jp7">Jackson & Pollock 7 Dobras</option>
+                        <option value="jp3">Jackson & Pollock 3 Dobras</option>
+                        <option value="guedes">Guedes (População Brasileira)</option>
+                        <option value="durnin">Durnin & Womersley 4 Dobras</option>
+                        </select>
+                </div>
+            </section>
+            
+            <section class="medidas-basicas">
+                <h2>2. Medidas Básicas e Circunferências (em cm)</h2>
+                
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="estatura">Estatura (cm):</label>
+                        <input type="number" id="estatura" min="50" step="0.1" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="peso">Peso (kg):</label>
+                        <input type="number" id="peso" min="20" step="0.1" required>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="cintura">Circunferência da Cintura (cm):</label>
+                        <input type="number" id="cintura" min="10" step="0.1" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="quadril">Circunferência do Quadril (cm):</label>
+                        <input type="number" id="quadril" min="10" step="0.1" required>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dobras-cutaneas">
+                <h2>3. Dobras Cutâneas (em mm)</h2>
+                <p class="peculiaridade-nota">Insira os valores das dobras que você coletou (em milímetros).</p>
+
+                <div class="grid-dobras">
+                    <div class="input-group"><label for="triceps">Tríceps:</label><input type="number" id="triceps" min="0" step="0.1" class="dobra-input"></div>
+                    <div class="input-group"><label for="biceps">Bíceps:</label><input type="number" id="biceps" min="0" step="0.1" class="dobra-input"></div>
+                    <div class="input-group"><label for="subescapular">Subescapular:</label><input type="number" id="subescapular" min="0" step="0.1" class="dobra-input"></div>
+                    <div class="input-group"><label for="peitoral">Peitoral:</label><input type="number" id="peitoral" min="0" step="0.1" class="dobra-input"></div>
+                    <div class="input-group"><label for="axilarMedia">Axilar Média:</label><input type="number" id="axilarMedia" min="0" step="0.1" class="dobra-input"></div>
+                    <div class="input-group"><label for="abdominal">Abdominal:</label><input type="number" id="abdominal" min="0" step="0.1" class="dobra-input"></div>
+                    <div class="input-group"><label for="supraIliaca">Supra-Ilíaca:</label><input type="number" id="supraIliaca" min="0" step="0.1" class="dobra-input"></div>
+                    <div class="input-group"><label for="coxa">Coxa:</label><input type="number" id="coxa" min="0" step="0.1" class="dobra-input"></div>
+                    </div>
+            </section>
+
+            <button type="button" onclick="calcularAvaliacao()">Calcular Avaliação</button>
+        </form>
+
+        <section id="resultado-avaliacao">
+    <h2>Resultados da Avaliação</h2>
+    <div id="resultado">
+        </div>
+    
+    <button id="exportarDados" style="background-color: #17a2b8;">Exportar para CSV (Excel)</button> 
+    </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 - Davi Silva Personal Trainer</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+    // Registra o Service Worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(registration => {
+                    console.log('Service Worker registrado com sucesso:', registration.scope);
+                })
+                .catch(error => {
+                    console.error('Falha no registro do Service Worker:', error);
+                });
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1, h2 {
+    color: #007bff; /* Azul primário */
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 10px;
+    margin-top: 20px;
+}
+
+section {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"], input[type="number"], select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+}
+
+/* Agrupamento de inputs em uma linha */
+.input-row {
+    display: flex;
+    gap: 20px;
+}
+.input-row .input-group {
+    flex: 1;
+}
+
+/* Grid para as dobras cutâneas */
+.grid-dobras {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+button {
+    background-color: #28a745; /* Verde para o botão de ação */
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Estilo da Área de Resultado */
+#resultado-avaliacao {
+    margin-top: 40px;
+    background-color: #e2f0fb; /* Fundo levemente azul para destaque */
+}
+
+#resultado {
+    padding: 15px;
+    font-size: 1.1em;
+    white-space: pre-wrap; /* Para respeitar quebras de linha que faremos no JS */
+}
+
+/* =================================================================
+   NOVOS ESTILOS PARA APRESENTAÇÃO DE RESULTADOS (Melhor Visual)
+   ================================================================= */
+
+/* Container para agrupar as duas grandes seções de resultados */
+#resultado-avaliacao #resultado {
+    padding: 0; /* Remove o padding da div geral para controle mais fino */
+    white-space: normal; /* Desabilita o pre-wrap, vamos usar HTML estruturado */
+}
+
+.resultado-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Espaço entre as seções de dobras e índices */
+}
+
+/* ---------------------------------- */
+/* Estilos para a Seção de Dobras Cutâneas (Principal) */
+/* ---------------------------------- */
+.box-principal {
+    background-color: #f0f8ff; /* Azul claro para destacar o resultado principal */
+    border: 1px solid #bce2f3;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 1.05em;
+}
+
+.box-principal h3 {
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.resultado-linha {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #e9ecef;
+}
+
+.resultado-linha:last-child {
+    border-bottom: none;
+}
+
+.resultado-linha .label {
+    font-weight: bold;
+    color: #333;
+}
+
+.resultado-linha .valor {
+    color: #28a745; /* Cor verde para os valores principais */
+    font-weight: bold;
+}
+
+/* ---------------------------------- */
+/* Estilo para Risco e Status (Cores) */
+/* ---------------------------------- */
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    min-width: 100px; /* Ajuda a alinhar */
+}
+
+/* Cores de Risco para Classificação do %GC */
+.status-atleta, .status-excelente {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-bom {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-mediano, .status-risco {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* ---------------------------------- */
+/* Estilo para a Seção de Índices Antropométricos */
+/* ---------------------------------- */
+.indices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.indice-card {
+    border: 1px solid #ddd;
+    border-left: 5px solid #007bff; /* Linha azul de destaque */
+    padding: 15px;
+    border-radius: 6px;
+    background-color: #fdfdfd;
+}
+
+.indice-card h4 {
+    margin-top: 0;
+    color: #007bff;
+    font-size: 1.1em;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.indice-card .peculiaridade {
+    font-size: 0.85em;
+    color: #6c757d;
+    margin-top: 10px;
+    border-top: 1px dashed #f0f0f0;
+    padding-top: 5px;
+}
