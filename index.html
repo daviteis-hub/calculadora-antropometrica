@@ -110,10 +110,9 @@
     <script src="script.js"></script>
 
     <script>
-    // Registra o Service Worker
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/service-worker.js')
+                    navigator.serviceWorker.register('/calculadora-antropometrica/service-worker.js')
                 .then(registration => {
                     console.log('Service Worker registrado com sucesso:', registration.scope);
                 })
@@ -125,4 +124,5 @@
 </script>
 
 </body>
+
 </html>
