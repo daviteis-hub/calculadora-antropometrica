@@ -6,8 +6,8 @@ const urlsToCache = [
     '/script.js',
     '/manifest.json',
     // Adicione os caminhos dos seus ícones aqui
-    '/images/icon-192.png',
-    '/images/icon-512.png'
+    '/icon-192.png',
+    '/icon-512.png'
 ];
 
 // Instalação: Armazena os arquivos no cache
@@ -50,4 +50,5 @@ self.addEventListener('activate', event => {
             );
         })
     );
+
 });
