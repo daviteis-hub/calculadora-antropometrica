@@ -5,7 +5,7 @@ const urlsToCache = [
     '/calculadora-antropometrica/script.js',
     '/calculadora-antropometrica/manifest.json',
     '/calculadora-antropometrica/icon-192.png', 
-     '/calculadora-antropometrica/icon-512.png'
+    '/calculadora-antropometrica/icon-512.png'
 ];
 
 // Instalação: Armazena os arquivos no cache
@@ -50,4 +50,5 @@ self.addEventListener('activate', event => {
     );
 
 });
+
 
