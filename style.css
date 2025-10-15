@@ -206,3 +206,25 @@ button:hover {
     border-top: 1px dashed #f0f0f0;
     padding-top: 5px;
 }
+
+/* ================================== */
+/* NOVO ESTILO: STATUS NEUTRO (TMB) */
+/* ================================== */
+
+/* Cria um estilo visual para status neutros/informativos, como a TMB */
+.status-badge.status-excelente { /* Mantido para IMC 'Normal' */
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-badge.status-minima {
+    /* Cor de destaque neutra/informativa, por exemplo, azul claro */
+    background-color: #cce5ff; 
+    color: #004085;
+}
+
+.status-badge.status-nao, .status-badge.status-valido {
+    /* Cor para status genéricos */
+    background-color: #f0f0f0; 
+    color: #555;
+}
