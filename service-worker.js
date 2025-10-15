@@ -1,10 +1,11 @@
 const CACHE_NAME = 'antropo-cache-v1';
 const urlsToCache = [
-    '/calculadora-antropometrica/index.html', 
-    '/calculadora-antropometrica/style.css', 
+     '/calculadora-antropometrica/', // A URL raiz do seu Pages
+    '/calculadora-antropometrica/index.html',
+    '/calculadora-antropometrica/style.css',
     '/calculadora-antropometrica/script.js',
     '/calculadora-antropometrica/manifest.json',
-    '/calculadora-antropometrica/icon-192.png', 
+    '/calculadora-antropometrica/icon-192.png',
     '/calculadora-antropometrica/icon-512.png'
 ];
 
@@ -48,7 +49,4 @@ self.addEventListener('activate', event => {
             );
         })
     );
-
 });
-
-
