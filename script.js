@@ -80,10 +80,16 @@ function calcularAvaliacao() {
     }
 
     // 4. Chamada dos Índices de Circunferência (Calculados sempre)
+    
+    // >>>>> NOVO: Cálculo da TMB (Taxa Metabólica Basal) <<<<<
+    resultados.indices.push(calcularTMB(peso, estatura, idade, sexo)); 
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    // IMC
+    resultados.indices.push(calcularIMC(peso, estatura)); 
+    
     // Para RCE e RCQ, garantimos que as circunferências foram medidas
     if (cintura > 0 && quadril > 0) {
-        // IMC
-        resultados.indices.push(calcularIMC(peso, estatura)); 
         // Relação Cintura-Estatura
         resultados.indices.push(calcularRCE(cintura, estatura));
         // Relação Cintura-Quadril
@@ -204,6 +210,35 @@ function calcularGuedes(tr, se, ab, si, cx, idade, sexo) {
 // =================================================================
 // 3. ÍNDICES DE CIRCUNFERÊNCIA E GERAIS
 // =================================================================
+
+/**
+ * Taxa Metabólica Basal (TMB) - Fórmula de Harris-Benedict (Revisada)
+ * Unidades: peso (kg), estatura (cm), idade (anos)
+ */
+function calcularTMB(peso, estatura, idade, sexo) {
+    let tmb;
+
+    if (sexo === 'masculino') {
+        // TMB Homens: 88.362 + (13.397 * peso) + (4.799 * estatura) - (5.677 * idade)
+        tmb = 88.362 + (13.397 * peso) + (4.799 * estatura) - (5.677 * idade);
+    } else if (sexo === 'feminino') {
+        // TMB Mulheres: 447.593 + (9.247 * peso) + (3.098 * estatura) - (4.330 * idade)
+        tmb = 447.593 + (9.247 * peso) + (3.098 * estatura) - (4.330 * idade);
+    } else {
+        return {
+            indice: "Taxa Metabólica Basal (TMB)",
+            status: "Sexo não especificado para o cálculo da TMB (Harris-Benedict)."
+        };
+    }
+
+    return {
+        indice: "Taxa Metabólica Basal (TMB)",
+        valor: tmb.toFixed(0), // Arredonda para o número inteiro mais próximo
+        status: "Energia Mínima em Repouso",
+        peculiaridade: "Calculada pela fórmula de Harris-Benedict (Revisada). Representa o gasto calórico diário (em Kcal) em repouso absoluto."
+    };
+}
+
 
 /**
  * Índice de Massa Corporal (IMC)
@@ -345,24 +380,27 @@ function exibirResultados(resultados) {
         <div class="indices-grid">
     `;
 
-    // Cria um card para cada índice
+    // Cria um card para cada índice (Incluindo TMB, IMC, RCE, RCQ)
     resultados.indices.forEach(indice => {
         // Função auxiliar para determinar a cor do status de risco
         const obterStatusClass = (status) => {
-            if (status.includes("Normal") || status.includes("Baixo")) return "status-excelente";
-            if (status.includes("Sobrepeso") || status.includes("Moderado")) return "status-bom";
-            if (status.includes("Obesidade") || status.includes("Elevado")) return "status-risco";
+            if (status.includes("Normal") || status.includes("Baixo") || status.includes("Mínima")) return "status-excelente";
+            if (status.includes("Sobrepeso") || status.includes("Moderado") || status.includes("Atenção")) return "status-bom";
+            if (status.includes("Obesidade") || status.includes("Elevado") || status.includes("Grau I") || status.includes("Grau II")) return "status-risco";
             return "";
         };
         
         const statusClass = obterStatusClass(indice.status);
+
+        // Se for TMB, adiciona o Kcal
+        const unidade = indice.indice === 'Taxa Metabólica Basal (TMB)' ? ' Kcal/dia' : '';
 
         htmlOutput += `
             <div class="indice-card">
                 <h4>${indice.indice}</h4>
                 <div class="resultado-linha">
                     <span class="label">Valor:</span>
-                    <span class="valor">${indice.valor || 'N/A'}</span>
+                    <span class="valor">${indice.valor || 'N/A'}${unidade}</span>
                 </div>
                 <div class="resultado-linha">
                     <span class="label">Status/Risco:</span>
@@ -637,14 +675,17 @@ function exportarParaCSV(resultados) {
          csv += `Composicao Corporal${SEPARATOR}Erro Protocolo Dobras${SEPARATOR}${resultados.dobras.erro}${SEPARATOR}${SEPARATOR}\n`;
     }
     
-    // 5. Coletar Índices de Risco
+    // 5. Coletar Índices de Risco (Incluindo TMB)
     csv += `\nResultados Risco${SEPARATOR}---${SEPARATOR}---${SEPARATOR}---${SEPARATOR}---\n`;
     resultados.indices.forEach(indice => {
-        // Para IMC/RCE/RCQ, o valor pode ser um número ou a própria string de status
+        // Para TMB/IMC/RCE/RCQ, o valor pode ser um número ou a própria string de status
         const valorCSV = indice.valor ? formatarNumero(indice.valor) : 'N/A'; 
         const statusCSV = indice.status.replace(/;/g, ','); // Garante que o status não quebre o CSV
         
-        csv += `Risco Antropometrico${SEPARATOR}${indice.indice}${SEPARATOR}${valorCSV}${SEPARATOR}${SEPARATOR}${statusCSV}\n`;
+        // Adiciona a unidade Kcal/dia se for TMB
+        const unidade = indice.indice === 'Taxa Metabólica Basal (TMB)' ? 'Kcal/dia' : '';
+
+        csv += `Risco Antropometrico${SEPARATOR}${indice.indice}${SEPARATOR}${valorCSV}${SEPARATOR}${unidade}${SEPARATOR}${statusCSV}\n`;
     });
 
     
