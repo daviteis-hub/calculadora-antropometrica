@@ -80,15 +80,56 @@
                 <p class="peculiaridade-nota">Insira os valores das dobras que você coletou (em milímetros).</p>
 
                 <div class="grid-dobras">
-                    <div class="input-group"><label for="triceps">Tríceps:</label><input type="number" id="triceps" min="0" step="0.1" class="dobra-input"></div>
-                    <div class="input-group"><label for="biceps">Bíceps:</label><input type="number" id="biceps" min="0" step="0.1" class="dobra-input"></div>
-                    <div class="input-group"><label for="subescapular">Subescapular:</label><input type="number" id="subescapular" min="0" step="0.1" class="dobra-input"></div>
-                    <div class="input-group"><label for="peitoral">Peitoral:</label><input type="number" id="peitoral" min="0" step="0.1" class="dobra-input"></div>
-                    <div class="input-group"><label for="axilarMedia">Axilar Média:</label><input type="number" id="axilarMedia" min="0" step="0.1" class="dobra-input"></div>
-                    <div class="input-group"><label for="abdominal">Abdominal:</label><input type="number" id="abdominal" min="0" step="0.1" class="dobra-input"></div>
-                    <div class="input-group"><label for="supraIliaca">Supra-Ilíaca:</label><input type="number" id="supraIliaca" min="0" step="0.1" class="dobra-input"></div>
-                    <div class="input-group"><label for="coxa">Coxa:</label><input type="number" id="coxa" min="0" step="0.1" class="dobra-input"></div>
+                    
+                    <div class="input-group">
+                        <label for="triceps">Tríceps:</label>
+                        <span class="info-icon" data-tooltip="Ponto médio entre o acrômio e o olécrano, na face posterior do braço.">ⓘ</span>
+                        <input type="number" id="triceps" min="0" step="0.1" class="dobra-input">
                     </div>
+                    
+                    <div class="input-group">
+                        <label for="biceps">Bíceps:</label>
+                        <span class="info-icon" data-tooltip="Ponto de maior perímetro do bíceps, na face anterior do braço.">ⓘ</span>
+                        <input type="number" id="biceps" min="0" step="0.1" class="dobra-input">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="subescapular">Subescapular:</label>
+                        <span class="info-icon" data-tooltip="Diagonal (45°), 2 cm abaixo e lateralmente ao ângulo inferior da escápula.">ⓘ</span>
+                        <input type="number" id="subescapular" min="0" step="0.1" class="dobra-input">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="peitoral">Peitoral:</label>
+                        <span class="info-icon" data-tooltip="Diagonal na metade da distância entre linha axilar anterior e mamilo (Homens).">ⓘ</span>
+                        <input type="number" id="peitoral" min="0" step="0.1" class="dobra-input">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="axilarMedia">Axilar Média:</label>
+                        <span class="info-icon" data-tooltip="Vertical na linha axilar média, na altura do processo xifoide.">ⓘ</span>
+                        <input type="number" id="axilarMedia" min="0" step="0.1" class="dobra-input">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="abdominal">Abdominal:</label>
+                        <span class="info-icon" data-tooltip="Vertical, 2 cm lateralmente à direita da cicatriz umbilical.">ⓘ</span>
+                        <input type="number" id="abdominal" min="0" step="0.1" class="dobra-input">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="supraIliaca">Supra-Ilíaca:</label>
+                        <span class="info-icon" data-tooltip="Diagonal, logo acima da crista ilíaca, na linha axilar média.">ⓘ</span>
+                        <input type="number" id="supraIliaca" min="0" step="0.1" class="dobra-input">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="coxa">Coxa:</label>
+                        <span class="info-icon" data-tooltip="Vertical, ponto médio entre a dobra inguinal e a borda superior da patela.">ⓘ</span>
+                        <input type="number" id="coxa" min="0" step="0.1" class="dobra-input">
+                    </div>
+                    
+                </div>
             </section>
 
             <button type="button" onclick="calcularAvaliacao()">Calcular Avaliação</button>
@@ -126,3 +167,4 @@
 
 </body>
 </html>
+
