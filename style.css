@@ -228,3 +228,71 @@ button:hover {
     background-color: #f0f0f0; 
     color: #555;
 }
+
+/* ================================== */
+/* Estilo para ÍCONE DE INFORMAÇÃO (Tooltip) */
+/* ================================== */
+
+.input-group label {
+    display: inline-block; /* Permite que o ícone fique ao lado do label */
+    margin-right: 5px;
+}
+
+.info-icon {
+    position: relative; /* Base para o posicionamento do tooltip */
+    display: inline-block;
+    cursor: help; /* Muda o cursor para indicar dica */
+    color: #007bff; /* Cor do tema principal */
+    font-weight: bold;
+    font-size: 0.9em;
+    padding: 0 4px; /* Pequeno espaçamento para melhor clique/toque */
+}
+
+/* O conteúdo do tooltip (a caixa de texto que aparece) */
+.info-icon::before {
+    content: attr(data-tooltip); /* Pega o texto do HTML */
+    position: absolute;
+    bottom: 150%; /* Posição acima do ícone */
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza horizontalmente */
+    
+    /* Estilos da caixa */
+    background-color: #333;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    white-space: normal; /* Permite quebras de linha para textos longos */
+    text-align: center;
+    max-width: 250px;
+    font-weight: normal;
+    font-size: 0.9em;
+    z-index: 1000;
+    
+    /* Esconde por padrão e transição suave */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* O Triângulo/Ponta do Tooltip (opcional, mas profissional) */
+.info-icon::after {
+    content: '';
+    position: absolute;
+    bottom: 120%; /* Abaixo do texto, acima do ícone */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent; /* Triângulo preto apontando para baixo */
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* Mostra o tooltip (e a ponta) ao passar o mouse */
+.info-icon:hover::before,
+.info-icon:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
